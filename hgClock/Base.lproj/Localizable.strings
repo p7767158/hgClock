@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  hgClock
+
+  Created by zhh on 16/8/23.
+  Copyright © 2016年 zhh. All rights reserved.
+*/
+"HgTitle" = "叫床";
+"Set" = "设置";
+"Modify" = "修改";
+"Tip" = "你需要设置一个时间，然后我会在那时叫醒你";
+"Confirm" = "确定";
+"Mon" = "星期一";
+"Tue" = "星期二";
+"Wed" = "星期三";
+"Thu" = "星期四";
+"Fri" = "星期五";
+"Sat" = "星期六";
+"Sun" = "星期日";
+"WeekAlert" = "请选择周期";
+"ExcuseMe" = "抱歉";
+"TimerAlert" = "时间已经用完"
+"OnceAgain" = "再来一次";

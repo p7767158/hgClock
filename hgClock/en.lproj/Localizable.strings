@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  hgClock
+
+  Created by zhh on 16/8/23.
+  Copyright © 2016年 zhh. All rights reserved.
+*/
+"HgTitle" = "Call Bed";
+"Set" = "Set";
+"Modify" = "Modify";
+"Tip" = "You need to set a time, and then I will wake you up at that time";
+"Confirm" = "Confirm";
+"Mon" = "Monday";
+"Tue" = "Tuesday";
+"Wed" = "Wednesday";
+"Thu" = "Thursday";
+"Fri" = "Friday";
+"Sat" = "Saturday";
+"Sun" = "Sunday";
+"WeekAlert" = "Please select the week";
+"ExcuseMe" = "Excuse Me";
+"TimerAlert" = "Time has run out"
+"OnceAgain" = "Once Again";
