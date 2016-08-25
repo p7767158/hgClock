@@ -137,9 +137,13 @@ static NSString * const kWeekCell = @"kWeekCell";
 //            UILocalNotification
 //        }
 //    }]
-//    UILocalNotification *localNotify = [[UILocalNotification alloc] init];
-//    localNotify.fireDate = [NSDate dateWithTimeIntervalSinceNow:20];
-//    localNotify.repeatInterval =
+    UILocalNotification *localNotify = [[UILocalNotification alloc] init];
+    localNotify.fireDate = [NSDate dateWithTimeIntervalSinceNow:20];
+    localNotify.repeatInterval = NSSecondCalendarUnit;
+    localNotify.alertBody = @"时间到了";
+    localNotify.hasAction = YES;
+    localNotify.alertAction = @"10s内连续作对5道题，即可关闭闹钟";
+    localNotify.soundName = UILocalNotificationDefaultSoundName;
     
     
     [self.navigationController popViewControllerAnimated:YES];
