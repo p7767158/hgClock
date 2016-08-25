@@ -7,7 +7,7 @@
 //
 
 #import "HGCalculateViewController.h"
-#import "HGGlobal.m"
+#import "HGGlobal.h"
 #import <Masonry/Masonry.h>
 
 static const int kTime = 1000;
