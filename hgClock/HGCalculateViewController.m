@@ -90,8 +90,8 @@ static const int kCalculateTimes = 5;
             break;
         case '/': {
             while (firstPara % secPara) {
-                firstPara = [self getOperator];
-                secPara = [self getOperator];
+                firstPara = [self getOnePara];
+                secPara = [self getOnePara];
             }
             self.result = firstPara / secPara;
         }
@@ -152,6 +152,8 @@ static const int kCalculateTimes = 5;
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"ExcuseMe", nil) message:NSLocalizedString(@"TimeAlert", nil) preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *againAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OnceAgain", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                    //restart
+                    self.resultFalse = NO;
+                    self.resultTf.text = @"";
                     [self start];
                 }];
                 [alertController addAction:againAction];
@@ -162,10 +164,19 @@ static const int kCalculateTimes = 5;
             dispatch_source_cancel(timer);
             dispatch_async(dispatch_get_main_queue(), ^{
                 //success
+                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Success", nil) message:NSLocalizedString(@"TimeAlert", nil) preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *againAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OnceAgain", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    //restart
+                    self.isComplete = NO;
+                    self.resultTf.text = @"";
+                    [self start];
+                }];
+                [alertController addAction:againAction];
+                [self presentViewController:alertController animated:YES completion:nil];
             });
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.timerLb.text = [NSString stringWithFormat:@"%f", time / 100.f];
+            self.timerLb.text = [NSString stringWithFormat:@"%.2f", time / 100.f];
             time--;
         });
     });
@@ -179,14 +190,15 @@ static const int kCalculateTimes = 5;
 
 - (char)getOperator
 {
-    return [self.operatorArray[arc4random() % 4] charValue];
+    return [self.operatorArray[arc4random() % 4] characterAtIndex:0];
 }
 
 - (UILabel *)problemLb
 {
     if (!_problemLb) {
         _problemLb = [[UILabel alloc] init];
-        _problemLb.font = [UIFont fontWithName:@"DigifaceWide" size:24];
+        _problemLb.font = [UIFont fontWithName:@"DigifaceWide" size:34];
+        _problemLb.textColor = UIColorFrom0x(0x00f0ff);
     }
     return _problemLb;
 }
@@ -195,8 +207,10 @@ static const int kCalculateTimes = 5;
 {
     if (!_resultTf) {
         _resultTf = [[UITextField alloc] init];
-        [_resultTf addTarget:self action:@selector(judgeResult:) forControlEvents:UIControlEventValueChanged];
-        _resultTf.font = [UIFont fontWithName:@"DigifaceWide" size:24];
+        [_resultTf addTarget:self action:@selector(judgeResult:) forControlEvents:UIControlEventEditingChanged];
+        _resultTf.font = [UIFont fontWithName:@"DigifaceWide" size:34];
+        _resultTf.textColor = UIColorFrom0x(0x00f0ff);
+        _resultTf.keyboardType = UIKeyboardTypeNumberPad;
     }
     return _resultTf;
 }
@@ -207,8 +221,9 @@ static const int kCalculateTimes = 5;
     if (self.resultTf.text.length == resultLen) {
         if (self.resultTf.text.integerValue == self.result) {
             self.currentTimes++;
-            if (self.currentTimes >= 5) {
+            if (self.currentTimes >= kCalculateTimes) {
                 self.isComplete = YES;
+                return;
             }
             [self nextProblemWithIndex:(int)self.currentTimes];
         } else {

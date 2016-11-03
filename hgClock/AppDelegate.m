@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "UIImage+Color.h"
+#import "HGCalculateViewController.h"
 
 @interface AppDelegate ()
 
@@ -20,6 +21,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+//    if ([[UIApplication sharedApplication]currentUserNotificationSettings].types == UIUserNotificationTypeNone) {
+//        [[UIApplication sharedApplication]registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound  categories:nil]];
+//    }
+    
+    
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     UINavigationBar.appearance.tintColor = UIColor.whiteColor;
     [UINavigationBar.appearance setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:217/255.0 green:90/255.0 blue:81/255.0 alpha:1]] forBarMetrics:UIBarMetricsDefault];
@@ -28,7 +34,9 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     
-    ViewController *vc = [[ViewController alloc] init];
+    HGCalculateViewController *vc = [[HGCalculateViewController alloc] init];
+    
+//    ViewController *vc = [[ViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     
     self.window.rootViewController = nav;

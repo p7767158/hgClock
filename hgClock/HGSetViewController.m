@@ -10,6 +10,7 @@
 #import "HGSession.h"
 #import "HGWeekTableViewCell.h"
 #import <Masonry/Masonry.h>
+@import EventKit;
 
 static NSString * const kWeekCell = @"kWeekCell";
 
@@ -46,8 +47,7 @@ static NSString * const kWeekCell = @"kWeekCell";
         NSArray *weekArray = [[HGSession sharedHGSession] userDefaultForKey:kWeekKey];
         [weekArray enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([obj[@"select"] boolValue] == YES) {
-                [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
-                [self.tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0] animated:NO];
+                self.weekArray[idx][@"select"] = @(YES);
             }
         }];
     }
@@ -126,6 +126,9 @@ static NSString * const kWeekCell = @"kWeekCell";
     if (!hasSelected) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:NSLocalizedString(@"WeekAlert", nil) preferredStyle:UIAlertControllerStyleAlert];
         [self presentViewController:alertController animated:YES completion:nil];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self dismissViewControllerAnimated:YES completion:nil];
+        });
         return;
     }
     
@@ -137,14 +140,29 @@ static NSString * const kWeekCell = @"kWeekCell";
 //            UILocalNotification
 //        }
 //    }]
-    UILocalNotification *localNotify = [[UILocalNotification alloc] init];
-    localNotify.fireDate = [NSDate dateWithTimeIntervalSinceNow:20];
-    localNotify.repeatInterval = NSSecondCalendarUnit;
-    localNotify.alertBody = @"时间到了";
-    localNotify.hasAction = YES;
-    localNotify.alertAction = @"10s内连续作对5道题，即可关闭闹钟";
-    localNotify.soundName = UILocalNotificationDefaultSoundName;
     
+    EKEventStore *es = [[EKEventStore alloc] init];
+    [es requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError * _Nullable error) {
+        if (granted) {
+            EKAlarm *alarm = [EKAlarm alarmWithAbsoluteDate:[NSDate dateWithTimeIntervalSinceNow:20]];
+            
+            EKEvent *event = [EKEvent eventWithEventStore:es];
+            event.title = @"闹铃";
+            event.startDate = [NSDate date];
+            event.endDate = [NSDate dateWithTimeIntervalSinceNow:30];
+            event.allDay = YES;
+            [event addAlarm:alarm];
+            [es saveEvent:event span:EKSpanThisEvent commit:YES error:nil];
+            NSError *err = nil;
+            if([es saveEvent:event span:EKSpanThisEvent commit:YES error:&err]){
+                NSLog(@"saved!");
+            }else{
+                NSLog(@"%@",err);
+            }
+        } else {
+                NSLog(@"%@",error);
+        }
+    }];
     
     [self.navigationController popViewControllerAnimated:YES];
     
@@ -161,6 +179,7 @@ static NSString * const kWeekCell = @"kWeekCell";
 {
     HGWeekTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kWeekCell forIndexPath:indexPath];
     cell.titleLb.text = self.weekArray[indexPath.row][@"week"];
+    cell.subImg.hidden = ![self.weekArray[indexPath.row][@"select"] boolValue];
     return cell;
 }
 

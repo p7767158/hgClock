@@ -11,5 +11,6 @@
 @interface HGWeekTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) UILabel *titleLb;
+@property (nonatomic, strong) UIImageView *subImg;
 
 @end

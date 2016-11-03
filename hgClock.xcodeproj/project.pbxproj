@@ -40,6 +40,8 @@
 		E562D08B1D6D6203009D5231 /* HGAnimationCircleBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = E562D08A1D6D6203009D5231 /* HGAnimationCircleBtn.m */; };
 		E562D08E1D6D6242009D5231 /* HGFireworksEmitterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E562D08D1D6D6242009D5231 /* HGFireworksEmitterView.m */; };
 		E5653B6A1D6E8B8800FCCBC7 /* digifaw.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5653B691D6E8B8800FCCBC7 /* digifaw.ttf */; };
+		E5653B6C1D6EE57B00FCCBC7 /* russian_electro30.wav in Resources */ = {isa = PBXBuildFile; fileRef = E5653B6B1D6EE57B00FCCBC7 /* russian_electro30.wav */; };
+		E5653B6E1D6EE58300FCCBC7 /* analog_alarm30.wav in Resources */ = {isa = PBXBuildFile; fileRef = E5653B6D1D6EE58300FCCBC7 /* analog_alarm30.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +130,8 @@
 		E562D08C1D6D6242009D5231 /* HGFireworksEmitterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGFireworksEmitterView.h; sourceTree = "<group>"; };
 		E562D08D1D6D6242009D5231 /* HGFireworksEmitterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGFireworksEmitterView.m; sourceTree = "<group>"; };
 		E5653B691D6E8B8800FCCBC7 /* digifaw.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = digifaw.ttf; sourceTree = "<group>"; };
+		E5653B6B1D6EE57B00FCCBC7 /* russian_electro30.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = russian_electro30.wav; sourceTree = "<group>"; };
+		E5653B6D1D6EE58300FCCBC7 /* analog_alarm30.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = analog_alarm30.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +220,8 @@
 		E51C60991D6DAEB5007160F9 /* resourse */ = {
 			isa = PBXGroup;
 			children = (
+				E5653B6D1D6EE58300FCCBC7 /* analog_alarm30.wav */,
+				E5653B6B1D6EE57B00FCCBC7 /* russian_electro30.wav */,
 				E5653B691D6E8B8800FCCBC7 /* digifaw.ttf */,
 				E51C60931D6DAB63007160F9 /* bg1.jpg */,
 				E51C60911D6DAA24007160F9 /* test.png */,
@@ -454,6 +460,7 @@
 			files = (
 				E5653B6A1D6E8B8800FCCBC7 /* digifaw.ttf in Resources */,
 				E54D47E31D6BF81E00AA228F /* LaunchScreen.storyboard in Resources */,
+				E5653B6C1D6EE57B00FCCBC7 /* russian_electro30.wav in Resources */,
 				E54D48081D6BF95200AA228F /* Localizable.strings in Resources */,
 				E51C60921D6DAA24007160F9 /* test.png in Resources */,
 				E51C60941D6DAB63007160F9 /* bg1.jpg in Resources */,
@@ -461,6 +468,7 @@
 				E54D47DE1D6BF81E00AA228F /* Main.storyboard in Resources */,
 				E51C606B1D6D9057007160F9 /* test1.png in Resources */,
 				E54D480F1D6BFA1D00AA228F /* InfoPlist.strings in Resources */,
+				E5653B6E1D6EE58300FCCBC7 /* analog_alarm30.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,7 +656,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 610384189@qq.com (W2XLK2NATQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 610384189@qq.com (W2XLK2NATQ)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -695,6 +704,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: 610384189@qq.com (W2XLK2NATQ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -723,7 +733,7 @@
 			baseConfigurationReference = 8CEF9898AD38C8514CA02706 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Changjun Hu (CAJ8B3F2UU)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = hgClock/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -739,7 +749,7 @@
 			baseConfigurationReference = 6A872014253DCD11901794F4 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Changjun Hu (CAJ8B3F2UU)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = hgClock/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;

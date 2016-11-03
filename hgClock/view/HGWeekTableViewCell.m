@@ -11,8 +11,6 @@
 
 @interface HGWeekTableViewCell ()
 
-@property (nonatomic, strong) UIImageView *subImg;
-
 @end
 
 @implementation HGWeekTableViewCell
@@ -60,10 +58,9 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-    if (selected) {
+    if (selected == YES) {
         self.subImg.hidden = !self.subImg.hidden;
     }
-    // Configure the view for the selected state
 }
 
 @end
